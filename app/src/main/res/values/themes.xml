@@ -1,9 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
     <style name="Base.Theme.MyTestApp2" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
-
     <style name="Theme.MyTestApp2" parent="Base.Theme.MyTestApp2" />
+    <style name="ButtonStyleCatalog">
+        <item name="android:background">@drawable/selector_button</item>
+    </style>
 </resources>

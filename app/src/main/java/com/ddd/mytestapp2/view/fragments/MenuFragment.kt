@@ -51,17 +51,25 @@ class MenuFragment : Fragment(),CatalogAdapterInterface,FoodAdapterInterface {
 
         menuViewModel = ViewModelProvider(this)[MenuViewModel::class.java]
 
-        val adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item, listCities)
+        val adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listCities)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding?.idMenuMenuSc1Spinner?.adapter = adapter
         binding?.idMenuMenuSc1Spinner?.setSelection(0)
 
-        binding?.idMenuMenuSc1Spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                binding?.idMenuMenuSc1Spinner?.setSelection(position)
+        binding?.idMenuMenuSc1Spinner?.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    binding?.idMenuMenuSc1Spinner?.setSelection(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
 
         recyclerViewFood = binding?.idMenuMenuRvFood
         recyclerViewImage = binding?.idMenuMenuRvImage
@@ -77,20 +85,20 @@ class MenuFragment : Fragment(),CatalogAdapterInterface,FoodAdapterInterface {
 
         repository = Repository()
 
-        if(repository?.checkInternet(requireContext()) == true){
+        if (repository?.checkInternet(requireContext()) == true) {
             menuViewModel?.getListFood("pizza") // запрос в сеть
-        }else{
+        } else {
             menuViewModel?.getListFoodFromMyDatabase("pizza") // запрос в бд
         }
 
-        menuViewModel?.listFood?.observe(viewLifecycleOwner){ data ->
+        menuViewModel?.listFood?.observe(viewLifecycleOwner) { data ->
             foodAdapter?.setList(data.body()?.results)
         }
 
-        menuViewModel?.listFoodInMyDatabase?.observe(viewLifecycleOwner){ data ->
+        menuViewModel?.listFoodInMyDatabase?.observe(viewLifecycleOwner) { data ->
             val list = mutableListOf<Food>()
-            for (i in data){
-                list.add(Food(i.id.toInt(),i.urlImage,"",i.name))
+            for (i in data) {
+                list.add(Food(i.id.toInt(), i.urlImage, "", i.name))
             }
             foodAdapter?.setList(list)
         }
