@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/id_menu_menu"
+        android:icon="@drawable/icon_food_menu"
+        android:title="меню" />
+    <item
+        android:id="@+id/id_menu_profile"
+        android:icon="@drawable/icon_profile_menu"
+        android:title="профиль" />
+    <item
+        android:id="@+id/id_menu_crate"
+        android:icon="@drawable/icon_crate_menu"
+        android:title="корзина" />
+
+</menu>
